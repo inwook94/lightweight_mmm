@@ -416,6 +416,10 @@ def media_mix_model(
     plate_prefixes = ("extra_feature",)
     extra_features_einsum = "tf, f -> t"  # t = time, f = feature
     extra_features_plates_shape = (extra_features.shape[1],)
+    coef_extra_features = numpyro.sample(
+          name=_COEF_EXTRA_FEATURES,
+          fn=dist.HalfNormal(scale=extra_features))
+
     if extra_features.ndim == 3:
       plate_prefixes = ("extra_feature", "geo")
       extra_features_einsum = "tfg, fg -> tg"  # t = time, f = feature, g = geo
