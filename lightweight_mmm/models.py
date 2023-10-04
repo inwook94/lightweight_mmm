@@ -422,10 +422,10 @@ def media_mix_model(
       extra_features_plates_shape = (extra_features.shape[1], *geo_shape)
     with numpyro.plate_stack(plate_prefixes,
                              sizes=extra_features_plates_shape):
+      normalisation_factor = jnp.sqrt(2.0 / jnp.pi)       
       coef_extra_features = numpyro.sample(
           name=_COEF_EXTRA_FEATURES,
-          fn=custom_priors.get(
-              _COEF_EXTRA_FEATURES, default_priors[_COEF_EXTRA_FEATURES]))
+          fn=dist.HalfNormal(scale=coef_extra_features  * normalisation_factor)) #####
     extra_features_effect = jnp.einsum(extra_features_einsum,
                                        extra_features,
                                        coef_extra_features)
