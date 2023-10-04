@@ -103,7 +103,7 @@ def _get_default_priors() -> Mapping[str, Prior]:
       _SIGMA: dist.Gamma(concentration=1., rate=1.),
       _GAMMA_SEASONALITY: dist.Normal(loc=0., scale=1.),
       _WEEKDAY: dist.Normal(loc=0., scale=.5),
-      _COEF_EXTRA_FEATURES: dist.Normal(loc=0., scale=1.),
+      _COEF_EXTRA_FEATURES: dist.HalfNormal(scale=.5),
       _COEF_SEASONALITY: dist.HalfNormal(scale=.5)
   })
 
