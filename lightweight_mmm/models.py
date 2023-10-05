@@ -418,7 +418,7 @@ def media_mix_model(
     extra_features_plates_shape = (extra_features.shape[1],)
     coef_extra_features = numpyro.sample(
           name=_COEF_EXTRA_FEATURES,
-          fn=dist.HalfNormal(scale=extra_features))
+          fn=dist.HalfNormal(scale=0.5))
 
     if extra_features.ndim == 3:
       plate_prefixes = ("extra_feature", "geo")
