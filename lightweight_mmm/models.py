@@ -426,7 +426,7 @@ def media_mix_model(
       normalisation_factor = jnp.sqrt(2.0 / jnp.pi)       
       coef_extra_features = numpyro.sample(
           name=_COEF_EXTRA_FEATURES,
-          fn=dist.HalfNormal(scale=coef_extra_features  * normalisation_factor)) #####
+          fn=dist.HalfNormal(scale=0.5)) #####
     extra_features_effect = jnp.einsum(extra_features_einsum,
                                        extra_features,
                                        coef_extra_features)
