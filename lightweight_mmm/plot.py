@@ -426,7 +426,7 @@ def plot_response_curves(# jax-ndarray
         "Model needs to be fit first before attempting to plot its response "
         "curves.")
   media = media_mix_model.media
-  media_maxes = media.max(axis=0) * (1 + percentage_add)
+  media_maxes = np.repeat(media.max() * (1 + percentage_add),media.shape[1])
   if media_mix_model._extra_features is not None:
     extra_features = jnp.expand_dims(
         media_mix_model._extra_features.mean(axis=0), axis=0)
