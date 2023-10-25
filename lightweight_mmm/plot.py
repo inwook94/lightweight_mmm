@@ -547,7 +547,7 @@ def plot_response_curves(# jax-ndarray
   last_ax.set_xlabel("Normalized spend per channel"
                      if not media_scaler else "Spend per channel")
   plt.close()
-  return fig
+  return fig, predictions, media_ranges
 
 
 def plot_cross_correlate(feature: jnp.ndarray,
